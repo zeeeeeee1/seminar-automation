@@ -1,0 +1,13 @@
+{
+  "name": "seminar-slide-generator",
+  "version": "1.0.0",
+  "description": "AIセラ セミナースライド自動生成スクリプト",
+  "main": "generate_seminar.js",
+  "scripts": {
+    "generate": "node generate_seminar.js"
+  },
+  "dependencies": {
+    "pptxgenjs": "^3.12.0",
+    "qrcode": "^1.5.3"
+  }
+}

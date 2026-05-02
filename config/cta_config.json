@@ -1,0 +1,74 @@
+{
+  "_comment": "このファイルを編集するとCTAスライドとQRスライドの内容が変わります",
+
+  "qr_url": "https://lin.ee/yhhurWq",
+  "qr_display_text": "lin.ee/yhhurWq",
+
+  "cta_slide": {
+    "tag": "REALITY CHECK",
+    "tag_sub": "• では、明日から稼げるか？",
+    "title_black": "答えは、",
+    "title_gold": "いいえ。",
+    "subtitle": "知識を入れただけでは、単価は上がらない。\n実務で使いこなせるようになるには、次の3つが必要です。",
+    "cards": [
+      {
+        "num": "01 / ENVIRONMENT",
+        "title": "実践できる環境",
+        "body": "ハーネスを組める現場にそもそも入らないと、経験は積み上がらない。\n現場の選び方が単価を決める。"
+      },
+      {
+        "num": "02 / REVIEW",
+        "title": "見てくれる人（レビュー）",
+        "body": "AIが出した設計を、そのまま提出しているうちは伸びない。\n「その判断は正しいか」を評価してくれる人が必要。"
+      },
+      {
+        "num": "03 / STRATEGY",
+        "title": "単価交渉の導線",
+        "body": "単価を上げるには、交渉のタイミングと言葉選びがすべて。\nロードマップを一緒に引いてくれる伴走者がいるかどうかで差が出る。"
+      }
+    ],
+    "cta_main": "そこ、僕がサポートします。",
+    "cta_sub": "個別相談会で、あなたの現場・スキル・次の一手を一緒に見ます。"
+  },
+
+  "qr_slide": {
+    "tag": "NEXT ACTION",
+    "tag_sub": "• 特典受け取り  &  個別面談予約",
+    "title_black": "技術を装着する",
+    "title_gold": "時代へ。",
+    "title_sub": "自由はすぐそこにある。",
+    "bullets": [
+      "特典4点セット（要点まとめ / ロードマップ / エージェント3選 / 案件3選）全員配布",
+      "個別サポート面談（200〜300万ロードマップ ほか 3特典）",
+      "限定オープンチャット（Claude Code / MCP 最新共有）",
+      "次回セミナー優先ご招待"
+    ],
+    "scan_label": "SCAN TO JOIN",
+    "card_title_1": "特典受け取り & 個別面談",
+    "card_title_2": "はこちらから",
+    "quote": "\" 技術を『着く』時代は終わり、技術を『装着（ハーネス）』する時代です。\n    まずは今日、一歩を踏み出しましょう。 \"",
+    "footer_left": "AI  ◆  SELA",
+    "footer_right": "THANK  YOU"
+  },
+
+  "calendar_exclude_keywords": [
+    "作業会", "グルコン", "グループコンサル", "予定入れない",
+    "オンライン面談", "本業定例", "X定例", "AI大学雑談会",
+    "雑談", "面談", "定例"
+  ],
+
+  "calendar_include_keywords": [
+    "セミナー", "講義", "勉強会", "セッション", "ウェビナー", "ワークショップ"
+  ],
+
+  "brand_colors": {
+    "cream": "F5F0E6",
+    "black": "1A1A1A",
+    "gold": "B8870B",
+    "gold_light": "D4A017",
+    "white": "FFFFFF",
+    "card_bg": "EDE8DC",
+    "border": "C8B98A",
+    "text_mid": "3A3020"
+  }
+}

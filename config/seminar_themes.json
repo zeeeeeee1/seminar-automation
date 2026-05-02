@@ -1,0 +1,82 @@
+{
+  "_comment": "セミナーごとに異なるテーマを使う。同じものを連続して使わないこと。",
+
+  "themes": {
+    "ocean": {
+      "name": "Ocean Gradient（深青×ミント）",
+      "use_for": "技術系・自動化・SNS運用",
+      "dark_bg": "065A82",
+      "mid_bg": "1C7293",
+      "accent": "02C39A",
+      "accent_light": "5EEAD4",
+      "white": "FFFFFF",
+      "light_bg": "E8F4F8",
+      "text_dark": "0D2B3E",
+      "text_light": "CADCFC"
+    },
+    "midnight": {
+      "name": "Midnight Executive（ネイビー×ゴールド）",
+      "use_for": "副業・収益化・キャリア",
+      "dark_bg": "1E2761",
+      "mid_bg": "2D3B8E",
+      "accent": "F4C430",
+      "accent_light": "D4A017",
+      "white": "FFFFFF",
+      "light_bg": "EEF2FF",
+      "text_dark": "1E2761",
+      "text_light": "CADCFC"
+    },
+    "coral": {
+      "name": "Coral Energy（コーラル×ネイビー）",
+      "use_for": "ビジネス向け・実践編・初心者向け",
+      "dark_bg": "2F3C7E",
+      "mid_bg": "3D52A0",
+      "accent": "F96167",
+      "accent_light": "FAA7AA",
+      "white": "FFFFFF",
+      "light_bg": "FFF5F5",
+      "text_dark": "1E2A5E",
+      "text_light": "C8D8FF"
+    },
+    "forest": {
+      "name": "Forest & Moss（深緑×クリーム）",
+      "use_for": "ライフスタイル・長期戦略・マインドセット",
+      "dark_bg": "2C5F2D",
+      "mid_bg": "3D7A3E",
+      "accent": "97BC62",
+      "accent_light": "C5E08A",
+      "white": "FFFFFF",
+      "light_bg": "F2F7EC",
+      "text_dark": "1A3A1B",
+      "text_light": "D4E8B0"
+    },
+    "cherry": {
+      "name": "Cherry Bold（チェリー×オフホワイト）",
+      "use_for": "マーケティング・セールス・LINEセミナー",
+      "dark_bg": "990011",
+      "mid_bg": "B20014",
+      "accent": "FCF6F5",
+      "accent_light": "FFD0D4",
+      "white": "FFFFFF",
+      "light_bg": "FFF5F5",
+      "text_dark": "3A0008",
+      "text_light": "FFD0D4"
+    },
+    "teal": {
+      "name": "Teal Trust（ティール×ミント）",
+      "use_for": "AI活用・Claude・プロダクト開発",
+      "dark_bg": "028090",
+      "mid_bg": "00A896",
+      "accent": "02C39A",
+      "accent_light": "A8EAD9",
+      "white": "FFFFFF",
+      "light_bg": "E6F7F5",
+      "text_dark": "01454F",
+      "text_light": "CCEEE8"
+    }
+  },
+
+  "theme_rotation": ["ocean", "midnight", "coral", "forest", "teal", "cherry"],
+
+  "_usage_note": "theme_rotationの順番で使い回す。直近で使ったテーマは避ける。"
+}
