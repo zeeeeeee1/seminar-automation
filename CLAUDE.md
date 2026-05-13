@@ -27,8 +27,10 @@
   - **自動実行時はOK待ちせず、参照資料から最善の判断で進める**
 
 ### STEP 4 — スライド生成
-- `scripts/generate_seminar.js` を参考に Node.js + pptxgenjs でスライドを生成
-- 必ず `scripts/cta_qr_slides.js` をrequireしてCTA+QRスライドを末尾に追加する
+- **推奨**: `/generate-slide` コマンドを使用する（`.claude/commands/generate-slide.md` 参照）
+- スペックJSONを `specs/` に作成し `node scripts/generate_from_spec.js --spec specs/<file>.json` で生成
+- 利用可能なスライドタイプは `scripts/slide_components.js` を参照（stat・quote・timeline・two_column など9種類）
+- 必ず `scripts/cta_qr_slides.js` のCTA+QRスライドを末尾に追加する（スペックに含めなくても自動追加）
 - `config/cta_config.json` のQR URLとCTA内容を使用すること
 - 出力先: `output/` フォルダ（ファイル名: `YYYYMMDD_セミナータイトル.pptx`）
 
