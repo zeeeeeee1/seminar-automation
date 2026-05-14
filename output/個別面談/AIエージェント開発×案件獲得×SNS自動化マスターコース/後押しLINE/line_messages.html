@@ -22,11 +22,26 @@ body {
 .doc-header h1 { font-size: 20px; font-weight: 900; margin-bottom: 4px; }
 .doc-header .meta { font-size: 11px; color: #888; }
 
+.sequence-label {
+  text-align: center;
+  font-size: 11px;
+  color: #aaa;
+  letter-spacing: 3px;
+  margin-bottom: 24px;
+  font-weight: 700;
+}
+.arrow-down {
+  text-align: center;
+  font-size: 20px;
+  color: #C9A84C;
+  margin: 8px 0 16px;
+}
+
 .msg-block {
   background: #fff;
   border-radius: 8px;
   border: 1px solid #ddd;
-  margin-bottom: 32px;
+  margin-bottom: 8px;
   overflow: hidden;
 }
 .msg-header {
@@ -49,7 +64,7 @@ body {
   color: #aaa;
 }
 .msg-body {
-  padding: 24px 24px;
+  padding: 20px 24px;
 }
 .msg-text {
   background: #f9f9f9;
@@ -78,18 +93,9 @@ body {
 }
 .bar-fill {
   height: 100%;
-  background: #C9A84C;
+  background: #4CAF50;
   border-radius: 3px;
 }
-.bar-fill.ok { background: #4CAF50; }
-.notes {
-  margin-top: 14px;
-  font-size: 11px;
-  color: #888;
-  border-top: 1px dashed #ddd;
-  padding-top: 10px;
-}
-.notes li { margin-bottom: 4px; padding-left: 1em; text-indent: -1em; }
 
 .rich-menu {
   margin-top: 16px;
@@ -99,8 +105,6 @@ body {
   color: #888;
   margin-bottom: 8px;
   font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
 }
 .rm-buttons {
   display: flex;
@@ -119,6 +123,11 @@ body {
 .rm-btn.neutral { border-color: #666; color: #666; }
 .rm-btn.negative { border-color: #aaa; color: #aaa; }
 
+.section-divider {
+  border-top: 2px dashed #ddd;
+  margin: 32px 0 24px;
+}
+
 .footer {
   margin-top: 32px;
   border-top: 1px solid #ddd;
@@ -135,69 +144,88 @@ body {
 
 <div class="doc-header">
   <h1>後押しLINEメッセージ — 個別面談フォロー</h1>
-  <div class="meta">用途：個別面談後フォローアップ（LINE公式配信）　／　文字数制限：500文字／通</div>
+  <div class="meta">用途：個別面談後フォローアップ（LINE公式配信）　／　送るタイミング：夜に一気に3通連続　／　文字数制限：500文字／通</div>
 </div>
+
+<div class="sequence-label">▼ 夜に連続で送る 3通セット ▼</div>
 
 <!-- MESSAGE 1 -->
 <div class="msg-block">
   <div class="msg-header">
-    <span class="num">MESSAGE 01</span>
-    <span class="title">本日最終日 — メイン配信</span>
-    <span class="charcount">送るタイミング：当日夕方</span>
+    <span class="num">1通目</span>
+    <span class="title">フック — このコースでしか手に入らないもの</span>
+    <span class="charcount" id="h1"></span>
   </div>
   <div class="msg-body">
     <div class="msg-text" id="msg1">先日、個別面談にお越しいただいた皆さんへ。
 
-3日間限定の特別価格、本日23:59が最終です。
+一つだけ、正直にお伝えさせてください。
 
-▶ 今日36万円で入れるものが、明日から46万円になります
-
-このコースに入ると、収益を得る仕組みが2つ手に入ります。
+このコースに入ると、収益を得る仕組みが最低2つ手に入ります。
 
 ✅ 高単価アフィリエイトシステム参画権
-✅ TikTok運用代行プログラム（通常フランチャイズ料：数十万円 → 受講生は0円）
+✅ TikTok運用代行プログラム
+　（通常フランチャイズ料：数十万円 → 受講生は0円）
 
-サポート内容は明日から一切変わりません。
-ただ、10万円多く払うことになるだけです。
-
-決断できた方も、まだ迷っている方も、
-一言だけ教えてください。返信お待ちしています。</div>
+この2つの組み合わせは、他のどのスクールにも存在しません。</div>
     <div class="char-bar">
       <span id="count1"></span>文字 / 500文字
-      <div class="bar-bg"><div class="bar-fill ok" id="bar1"></div></div>
-    </div>
-    <div class="notes">
-      <li>「稼ぐ」→「収益を得る」に変換済み</li>
-      <li>「今日限り」の過剰な誇張なし（23:59という具体時刻で自然な締め切り感）</li>
-      <li>リッチメニューはなし（次の追撃で使う）</li>
+      <div class="bar-bg"><div class="bar-fill" id="bar1"></div></div>
     </div>
   </div>
 </div>
 
+<div class="arrow-down">↓</div>
+
 <!-- MESSAGE 2 -->
 <div class="msg-block">
   <div class="msg-header">
-    <span class="num">MESSAGE 02</span>
-    <span class="title">追撃 — 夜20〜21時配信 ＋ リッチメニュー</span>
-    <span class="charcount">送るタイミング：当日夜</span>
+    <span class="num">2通目</span>
+    <span class="title">実績 — 年齢も経験も関係ない</span>
+    <span class="charcount" id="h2"></span>
   </div>
   <div class="msg-body">
-    <div class="msg-text" id="msg2">もう一度だけ、正直にお伝えします。
+    <div class="msg-text" id="msg2">このアフィリエイトシステム——
 
-このアフィリエイトシステム——
 80代・PC未経験のおばあちゃんが、月収50万円以上を実現しています。
 
-さらに、前澤社長クラスの方から直接動画編集の依頼を受けているようなトッププレイヤーの直下で動けます。
+さらに、前澤社長クラスの方から直接動画編集の依頼を受けているようなトッププレイヤーの直下で動ける環境です。
 
 即金性と再現性、どちらも持っているのがこのプロジェクトです。
 
+年齢も、経験も、関係ありません。
+仕組みがあるから結果が出るんです。</div>
+    <div class="char-bar">
+      <span id="count2"></span>文字 / 500文字
+      <div class="bar-bg"><div class="bar-fill" id="bar2"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="arrow-down">↓</div>
+
+<!-- MESSAGE 3 -->
+<div class="msg-block">
+  <div class="msg-header">
+    <span class="num">3通目</span>
+    <span class="title">価格・締め切り ＋ CTA（リッチメニュー）</span>
+    <span class="charcount" id="h3"></span>
+  </div>
+  <div class="msg-body">
+    <div class="msg-text" id="msg3">そして——本日23:59が最終です。
+
+▶ 今日36万円 → 明日から46万円
+
+サポート内容は一切変わりません。
+ただ、10万円多く払うことになるだけです。
+
 「迷っている」という一言だけでOK。
-枠と今日の価格だけを確保します。
+枠と今日の価格を確保します。
 
 ↓ 今のお気持ちを教えてください</div>
     <div class="char-bar">
-      <span id="count2"></span>文字 / 500文字
-      <div class="bar-bg"><div class="bar-fill ok" id="bar2"></div></div>
+      <span id="count3"></span>文字 / 500文字
+      <div class="bar-bg"><div class="bar-fill" id="bar3"></div></div>
     </div>
     <div class="rich-menu">
       <div class="rm-label">リッチメニュー（ボタン表示）</div>
@@ -207,24 +235,21 @@ body {
         <div class="rm-btn negative">今回は見送ります</div>
       </div>
     </div>
-    <div class="notes">
-      <li>「学んでいる」→「直下で動ける」に変換済み</li>
-      <li>「側近性」→「即金性」修正済み</li>
-      <li>前澤社長クラス言及で権威性を付加</li>
-      <li>「迷っている」一言でOKのハードル下げCTA</li>
-    </div>
   </div>
 </div>
 
-<!-- INDIVIDUAL MESSAGE -->
+<!-- DIVIDER -->
+<div class="section-divider"></div>
+
+<!-- INDIVIDUAL REPLY -->
 <div class="msg-block">
   <div class="msg-header">
-    <span class="num">INDIVIDUAL</span>
-    <span class="title">個別返信 — 「延長してほしい」という方へ</span>
-    <span class="charcount">送るタイミング：個別対応</span>
+    <span class="num">個別返信</span>
+    <span class="title">「延長してほしい」という方への個別対応</span>
+    <span class="charcount" id="h4"></span>
   </div>
   <div class="msg-body">
-    <div class="msg-text" id="msg3">ご連絡ありがとうございます！
+    <div class="msg-text" id="msg4">ご連絡ありがとうございます！
 
 もちろん大丈夫です。
 枠と今日の価格、しっかり確保しておきますね。
@@ -232,12 +257,8 @@ body {
 いつでも準備できたら教えてください。
 一緒に進めていきましょう！</div>
     <div class="char-bar">
-      <span id="count3"></span>文字 / 500文字
-      <div class="bar-bg"><div class="bar-fill ok" id="bar3"></div></div>
-    </div>
-    <div class="notes">
-      <li>プレッシャーをかけず、温かみのあるトーン</li>
-      <li>「枠と価格は確保」という安心感を付与</li>
+      <span id="count4"></span>文字 / 500文字
+      <div class="bar-bg"><div class="bar-fill" id="bar4"></div></div>
     </div>
   </div>
 </div>
@@ -250,18 +271,18 @@ body {
 </div>
 
 <script>
-function countAndDisplay(id, barId, countId) {
+function setup(id, barId, countId, headerId) {
   const text = document.getElementById(id).textContent.trim();
   const len = text.length;
   document.getElementById(countId).textContent = len;
+  document.getElementById(headerId).textContent = len + "文字";
   const pct = Math.min(len / 500 * 100, 100);
-  const bar = document.getElementById(barId);
-  bar.style.width = pct + "%";
-  if (pct > 90) bar.classList.remove("ok"), bar.classList.add("warn");
+  document.getElementById(barId).style.width = pct + "%";
 }
-countAndDisplay("msg1", "bar1", "count1");
-countAndDisplay("msg2", "bar2", "count2");
-countAndDisplay("msg3", "bar3", "count3");
+setup("msg1","bar1","count1","h1");
+setup("msg2","bar2","count2","h2");
+setup("msg3","bar3","count3","h3");
+setup("msg4","bar4","count4","h4");
 </script>
 </body>
 </html>
