@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>後押しLINEメッセージ</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+  background: #f5f5f5;
+  color: #1A1A1A;
+  font-size: 14px;
+  line-height: 1.8;
+  padding: 40px 20px;
+}
+.container { max-width: 700px; margin: 0 auto; }
+.doc-header {
+  border-bottom: 3px solid #1A1A1A;
+  padding-bottom: 14px;
+  margin-bottom: 32px;
+}
+.doc-header h1 { font-size: 20px; font-weight: 900; margin-bottom: 4px; }
+.doc-header .meta { font-size: 11px; color: #888; }
+
+.msg-block {
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-bottom: 32px;
+  overflow: hidden;
+}
+.msg-header {
+  background: #1A1A1A;
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.msg-header .num {
+  color: #C9A84C;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+.msg-header .title { font-size: 13px; font-weight: 700; }
+.msg-header .charcount {
+  font-size: 11px;
+  color: #aaa;
+}
+.msg-body {
+  padding: 24px 24px;
+}
+.msg-text {
+  background: #f9f9f9;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  padding: 18px 20px;
+  font-size: 14px;
+  line-height: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.char-bar {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  color: #888;
+}
+.bar-bg {
+  flex: 1;
+  height: 6px;
+  background: #eee;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  background: #C9A84C;
+  border-radius: 3px;
+}
+.bar-fill.ok { background: #4CAF50; }
+.notes {
+  margin-top: 14px;
+  font-size: 11px;
+  color: #888;
+  border-top: 1px dashed #ddd;
+  padding-top: 10px;
+}
+.notes li { margin-bottom: 4px; padding-left: 1em; text-indent: -1em; }
+
+.rich-menu {
+  margin-top: 16px;
+}
+.rich-menu .rm-label {
+  font-size: 11px;
+  color: #888;
+  margin-bottom: 8px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.rm-buttons {
+  display: flex;
+  gap: 8px;
+}
+.rm-btn {
+  flex: 1;
+  border: 2px solid #1A1A1A;
+  border-radius: 6px;
+  padding: 10px 8px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+.rm-btn.positive { border-color: #C9A84C; color: #C9A84C; }
+.rm-btn.neutral { border-color: #666; color: #666; }
+.rm-btn.negative { border-color: #aaa; color: #aaa; }
+
+.footer {
+  margin-top: 32px;
+  border-top: 1px solid #ddd;
+  padding-top: 12px;
+  font-size: 10px;
+  color: #aaa;
+  display: flex;
+  justify-content: space-between;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="doc-header">
+  <h1>後押しLINEメッセージ — 個別面談フォロー</h1>
+  <div class="meta">用途：個別面談後フォローアップ（LINE公式配信）　／　文字数制限：500文字／通</div>
+</div>
+
+<!-- MESSAGE 1 -->
+<div class="msg-block">
+  <div class="msg-header">
+    <span class="num">MESSAGE 01</span>
+    <span class="title">本日最終日 — メイン配信</span>
+    <span class="charcount">送るタイミング：当日夕方</span>
+  </div>
+  <div class="msg-body">
+    <div class="msg-text" id="msg1">先日、個別面談にお越しいただいた皆さんへ。
+
+3日間限定の特別価格、本日23:59が最終です。
+
+▶ 今日36万円で入れるものが、明日から46万円になります
+
+このコースに入ると、収益を得る仕組みが2つ手に入ります。
+
+✅ 高単価アフィリエイトシステム参画権
+✅ TikTok運用代行プログラム（通常フランチャイズ料：数十万円 → 受講生は0円）
+
+サポート内容は明日から一切変わりません。
+ただ、10万円多く払うことになるだけです。
+
+決断できた方も、まだ迷っている方も、
+一言だけ教えてください。返信お待ちしています。</div>
+    <div class="char-bar">
+      <span id="count1"></span>文字 / 500文字
+      <div class="bar-bg"><div class="bar-fill ok" id="bar1"></div></div>
+    </div>
+    <div class="notes">
+      <li>「稼ぐ」→「収益を得る」に変換済み</li>
+      <li>「今日限り」の過剰な誇張なし（23:59という具体時刻で自然な締め切り感）</li>
+      <li>リッチメニューはなし（次の追撃で使う）</li>
+    </div>
+  </div>
+</div>
+
+<!-- MESSAGE 2 -->
+<div class="msg-block">
+  <div class="msg-header">
+    <span class="num">MESSAGE 02</span>
+    <span class="title">追撃 — 夜20〜21時配信 ＋ リッチメニュー</span>
+    <span class="charcount">送るタイミング：当日夜</span>
+  </div>
+  <div class="msg-body">
+    <div class="msg-text" id="msg2">もう一度だけ、正直にお伝えします。
+
+このアフィリエイトシステム——
+80代・PC未経験のおばあちゃんが、月収50万円以上を実現しています。
+
+さらに、前澤社長クラスの方から直接動画編集の依頼を受けているようなトッププレイヤーの直下で動けます。
+
+即金性と再現性、どちらも持っているのがこのプロジェクトです。
+
+「迷っている」という一言だけでOK。
+枠と今日の価格だけを確保します。
+
+↓ 今のお気持ちを教えてください</div>
+    <div class="char-bar">
+      <span id="count2"></span>文字 / 500文字
+      <div class="bar-bg"><div class="bar-fill ok" id="bar2"></div></div>
+    </div>
+    <div class="rich-menu">
+      <div class="rm-label">リッチメニュー（ボタン表示）</div>
+      <div class="rm-buttons">
+        <div class="rm-btn positive">✅ 決めました！</div>
+        <div class="rm-btn neutral">🤔 まだ迷っています</div>
+        <div class="rm-btn negative">今回は見送ります</div>
+      </div>
+    </div>
+    <div class="notes">
+      <li>「学んでいる」→「直下で動ける」に変換済み</li>
+      <li>「側近性」→「即金性」修正済み</li>
+      <li>前澤社長クラス言及で権威性を付加</li>
+      <li>「迷っている」一言でOKのハードル下げCTA</li>
+    </div>
+  </div>
+</div>
+
+<!-- INDIVIDUAL MESSAGE -->
+<div class="msg-block">
+  <div class="msg-header">
+    <span class="num">INDIVIDUAL</span>
+    <span class="title">個別返信 — 「延長してほしい」という方へ</span>
+    <span class="charcount">送るタイミング：個別対応</span>
+  </div>
+  <div class="msg-body">
+    <div class="msg-text" id="msg3">ご連絡ありがとうございます！
+
+もちろん大丈夫です。
+枠と今日の価格、しっかり確保しておきますね。
+
+いつでも準備できたら教えてください。
+一緒に進めていきましょう！</div>
+    <div class="char-bar">
+      <span id="count3"></span>文字 / 500文字
+      <div class="bar-bg"><div class="bar-fill ok" id="bar3"></div></div>
+    </div>
+    <div class="notes">
+      <li>プレッシャーをかけず、温かみのあるトーン</li>
+      <li>「枠と価格は確保」という安心感を付与</li>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <span>AI ◆ SELA — 個別面談後押しLINEメッセージ</span>
+  <span>LINE公式アカウント配信用 / 500文字制限準拠</span>
+</div>
+
+</div>
+
+<script>
+function countAndDisplay(id, barId, countId) {
+  const text = document.getElementById(id).textContent.trim();
+  const len = text.length;
+  document.getElementById(countId).textContent = len;
+  const pct = Math.min(len / 500 * 100, 100);
+  const bar = document.getElementById(barId);
+  bar.style.width = pct + "%";
+  if (pct > 90) bar.classList.remove("ok"), bar.classList.add("warn");
+}
+countAndDisplay("msg1", "bar1", "count1");
+countAndDisplay("msg2", "bar2", "count2");
+countAndDisplay("msg3", "bar3", "count3");
+</script>
+</body>
+</html>
