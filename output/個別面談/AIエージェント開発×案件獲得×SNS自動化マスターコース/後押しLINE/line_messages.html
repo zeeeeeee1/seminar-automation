@@ -59,13 +59,8 @@ body {
   letter-spacing: 3px;
 }
 .msg-header .title { font-size: 13px; font-weight: 700; }
-.msg-header .charcount {
-  font-size: 11px;
-  color: #aaa;
-}
-.msg-body {
-  padding: 20px 24px;
-}
+.msg-header .charcount { font-size: 11px; color: #aaa; }
+.msg-body { padding: 20px 24px; }
 .msg-text {
   background: #f9f9f9;
   border: 1px solid #e8e8e8;
@@ -97,19 +92,14 @@ body {
   border-radius: 3px;
 }
 
-.rich-menu {
-  margin-top: 16px;
-}
+.rich-menu { margin-top: 16px; }
 .rich-menu .rm-label {
   font-size: 11px;
   color: #888;
   margin-bottom: 8px;
   font-weight: 700;
 }
-.rm-buttons {
-  display: flex;
-  gap: 8px;
-}
+.rm-buttons { display: flex; gap: 8px; }
 .rm-btn {
   flex: 1;
   border: 2px solid #1A1A1A;
@@ -123,10 +113,7 @@ body {
 .rm-btn.neutral { border-color: #666; color: #666; }
 .rm-btn.negative { border-color: #aaa; color: #aaa; }
 
-.section-divider {
-  border-top: 2px dashed #ddd;
-  margin: 32px 0 24px;
-}
+.section-divider { border-top: 2px dashed #ddd; margin: 32px 0 24px; }
 
 .footer {
   margin-top: 32px;
@@ -144,7 +131,7 @@ body {
 
 <div class="doc-header">
   <h1>後押しLINEメッセージ — 個別面談フォロー</h1>
-  <div class="meta">用途：個別面談後フォローアップ（LINE公式配信）　／　送るタイミング：夜に一気に3通連続　／　文字数制限：500文字／通</div>
+  <div class="meta">用途：個別面談後フォローアップ（LINE公式配信）　／　送るタイミング：夜に3通連続　／　文字数制限：500文字／通</div>
 </div>
 
 <div class="sequence-label">▼ 夜に連続で送る 3通セット ▼</div>
@@ -153,13 +140,15 @@ body {
 <div class="msg-block">
   <div class="msg-header">
     <span class="num">1通目</span>
-    <span class="title">フック — このコースでしか手に入らないもの</span>
+    <span class="title">フック — 本当にいいんですか？</span>
     <span class="charcount" id="h1"></span>
   </div>
   <div class="msg-body">
-    <div class="msg-text" id="msg1">先日、個別面談にお越しいただいた皆さんへ。
+    <div class="msg-text" id="msg1">本当にいいんですか？
 
-一つだけ、正直にお伝えさせてください。
+このチャンスを逃すと、もう一生出会えないかもしれません。
+
+それくらい、このプロジェクトの価値は高いです。
 
 このコースに入ると、収益を得る仕組みが最低2つ手に入ります。
 
@@ -167,7 +156,7 @@ body {
 ✅ TikTok運用代行プログラム
 　（通常フランチャイズ料：数十万円 → 受講生は0円）
 
-この2つの組み合わせは、他のどのスクールにも存在しません。</div>
+他のどのスクールにも存在しない組み合わせです。</div>
     <div class="char-bar">
       <span id="count1"></span>文字 / 500文字
       <div class="bar-bg"><div class="bar-fill" id="bar1"></div></div>
