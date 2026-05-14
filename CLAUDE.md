@@ -67,8 +67,27 @@ seminar-project/
 │   └── generate_seminar.js ← スライド生成サンプルスクリプト
 ├── reference/              ← 参照資料置き場（自由に追加OK）
 │   └── README.md
-└── output/                 ← 生成されたPPTXの出力先
+└── output/                 ← 生成ファイルの出力先（用途別ディレクトリ構成）
+    ├── セミナー/               ← セミナー用スライド
+    │   └── YYYYMMDD_タイトル.pptx
+    └── 個別面談/               ← 個別面談用スライド
+        └── コース名/
+            ├── スライド.pptx
+            ├── preview.html
+            ├── slide_screenshots/
+            └── まとめ/         ← コース説明・特典まとめPDF
+                ├── course_summary.html
+                └── course_summary.pdf
 ```
+
+### output ディレクトリルール（必ず守ること）
+
+| 用途 | 保存先 |
+|------|--------|
+| セミナースライド | `output/セミナー/YYYYMMDD_タイトル.pptx` |
+| 個別面談スライド | `output/個別面談/コース名/` |
+| 個別面談まとめPDF | `output/個別面談/コース名/まとめ/` |
+| 台本・原稿 | `output/個別面談/コース名/台本/` or `output/セミナー/台本/` |
 
 ---
 
