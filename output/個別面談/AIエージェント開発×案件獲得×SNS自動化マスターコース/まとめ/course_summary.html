@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700;900&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Meiryo", sans-serif;
+    background: #fff;
+    color: #1A1A1A;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  /* ── ページ全体 ── */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    padding: 14mm 16mm 16mm;
+  }
+
+  /* ── ヘッダー ── */
+  .header {
+    border-bottom: 3px solid #1A1A1A;
+    padding-bottom: 10px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  .header-title {
+    font-size: 17px;
+    font-weight: 900;
+    letter-spacing: -0.3px;
+    line-height: 1.3;
+  }
+  .header-sub {
+    font-size: 10px;
+    color: #666;
+    margin-top: 3px;
+  }
+  .header-badge {
+    background: #1A1A1A;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  /* ── セクション見出し ── */
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;
+    background: #1A1A1A;
+    padding: 6px 12px;
+    margin: 20px 0 12px;
+    border-radius: 2px;
+  }
+  .section-title .num {
+    color: #C9A84C;
+    font-size: 10px;
+    letter-spacing: 3px;
+  }
+
+  /* ── コースカード ── */
+  .courses {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+  .course-card {
+    border: 1px solid #ddd;
+    border-top: 3px solid #C9A84C;
+    padding: 14px;
+    border-radius: 4px;
+    background: #FAFAFA;
+  }
+  .course-card .course-tag {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #C9A84C;
+    margin-bottom: 5px;
+  }
+  .course-card .course-name {
+    font-size: 14px;
+    font-weight: 900;
+    color: #1A1A1A;
+    margin-bottom: 6px;
+    line-height: 1.35;
+  }
+  .course-card .course-price {
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 10px;
+  }
+  .course-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .course-card li {
+    font-size: 11px;
+    color: #333;
+    padding: 3px 0 3px 12px;
+    position: relative;
+    border-bottom: 1px solid #eee;
+    line-height: 1.5;
+  }
+  .course-card li:last-child { border-bottom: none; }
+  .course-card li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 5px;
+    height: 5px;
+    background: #C9A84C;
+    border-radius: 50%;
+  }
+  .course-card .course-goal {
+    margin-top: 10px;
+    background: #1A1A1A;
+    color: #C9A84C;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 5px 10px;
+    border-radius: 2px;
+    text-align: center;
+  }
+  .plan-note {
+    font-size: 10px;
+    color: #888;
+    font-style: italic;
+    margin-bottom: 4px;
+  }
+
+  /* ── 料金プラン ── */
+  .plans {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .plan-card {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #FAFAFA;
+  }
+  .plan-card.recommended {
+    border: 2px solid #C9A84C;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(201,168,76,0.15);
+  }
+  .plan-header {
+    background: #f0f0f0;
+    padding: 10px 12px 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  .plan-card.recommended .plan-header {
+    background: #1A1A1A;
+  }
+  .plan-header .plan-rec {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #C9A84C;
+    margin-bottom: 2px;
+  }
+  .plan-header .plan-name {
+    font-size: 14px;
+    font-weight: 900;
+    color: #1A1A1A;
+  }
+  .plan-card.recommended .plan-header .plan-name { color: #fff; }
+  .plan-header .plan-price-old {
+    font-size: 10px;
+    color: #aaa;
+    text-decoration: line-through;
+    margin-top: 4px;
+  }
+  .plan-header .plan-price-new {
+    font-size: 20px;
+    font-weight: 900;
+    color: #C9A84C;
+    margin-top: 1px;
+  }
+  .plan-header .plan-price-new span {
+    font-size: 11px;
+    font-weight: 400;
+    color: #888;
+  }
+  .plan-card.recommended .plan-header .plan-price-new { color: #C9A84C; }
+  .plan-body {
+    padding: 10px 12px;
+  }
+  .plan-body ul {
+    list-style: none;
+    padding: 0;
+  }
+  .plan-body li {
+    font-size: 10.5px;
+    color: #333;
+    padding: 3px 0 3px 11px;
+    position: relative;
+    border-bottom: 1px solid #eee;
+    line-height: 1.45;
+  }
+  .plan-body li:last-child { border-bottom: none; }
+  .plan-body li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 3px;
+    color: #C9A84C;
+    font-size: 9px;
+    font-weight: 700;
+  }
+  .plan-body .plus-badge {
+    display: inline-block;
+    background: #C9A84C;
+    color: #fff;
+    font-size: 8px;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 2px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+
+  /* ── 特典 ── */
+  .tokuten-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .tokuten-card {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px 12px;
+    background: #FAFAFA;
+    position: relative;
+  }
+  .tokuten-card.premium {
+    border-color: #C9A84C;
+    background: #FFFBF0;
+  }
+  .tokuten-num {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    background: #C9A84C;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px 0 4px 0;
+  }
+  .tokuten-title {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #1A1A1A;
+    padding-left: 18px;
+    margin-bottom: 3px;
+    line-height: 1.4;
+  }
+  .tokuten-desc {
+    font-size: 10px;
+    color: #666;
+    padding-left: 18px;
+    line-height: 1.5;
+  }
+
+  .tokuten-bonus {
+    border: 2px solid #1A1A1A;
+    border-radius: 4px;
+    padding: 12px 14px;
+    background: #1A1A1A;
+    margin-bottom: 6px;
+  }
+  .tokuten-bonus-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #C9A84C;
+    margin-bottom: 8px;
+  }
+  .tokuten-bonus-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .tokuten-bonus-item {
+    background: #2A2A2A;
+    border: 1px solid #C9A84C;
+    border-radius: 4px;
+    padding: 8px 12px;
+  }
+  .tokuten-bonus-item .bi-num {
+    font-size: 9px;
+    color: #C9A84C;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .tokuten-bonus-item .bi-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    margin: 3px 0;
+  }
+  .tokuten-bonus-item .bi-value {
+    font-size: 10px;
+    color: #C9A84C;
+    font-weight: 700;
+  }
+
+  /* ── フッター ── */
+  .footer {
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+    padding-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-logo {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #1A1A1A;
+  }
+  .footer-note {
+    font-size: 9px;
+    color: #aaa;
+  }
+
+  .gold { color: #C9A84C; }
+  .strike { text-decoration: line-through; color: #aaa; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div>
+      <div class="header-title">AIエージェント開発×案件獲得×SNS自動化<br>マスターコース — コース・特典のご案内</div>
+      <div class="header-sub">AIエージェント開発フリーランスコース  ／  ClaudeCode×案件ブーストコース</div>
+    </div>
+    <div class="header-badge">INDIVIDUAL CONSULTATION</div>
+  </div>
+
+  <!-- SECTION 1: コース内容 -->
+  <div class="section-title">
+    <span class="num">01 /</span> コース内容
+  </div>
+
+  <div class="courses">
+    <!-- コース1 -->
+    <div class="course-card">
+      <div class="course-tag">COURSE 01 — 全プラン付属</div>
+      <div class="course-name">AIエージェント開発<br>フリーランスコース</div>
+      <div class="course-price">コース単体価値：<strong>30万円相当</strong></div>
+      <ul>
+        <li>Python / Next.js 基礎〜実践</li>
+        <li>Claude Code 活用・AIエージェント構築</li>
+        <li>Webアプリ開発 / LP制作</li>
+        <li>フリーランス案件獲得の実務ノウハウ</li>
+        <li>動画教材見放題 ＋ チャット質問し放題</li>
+        <li>グループコンサル参加し放題</li>
+      </ul>
+      <div class="course-goal">目標：月収 50〜100万円 / 時給 3,000〜5,000円</div>
+    </div>
+
+    <!-- コース2 -->
+    <div class="course-card">
+      <div class="course-tag">COURSE 02 — スタンダード・VIP限定</div>
+      <div class="course-name">ClaudeCode×<br>案件ブーストコース</div>
+      <div class="course-price">コース単体価値：<strong>40万円相当</strong></div>
+      <ul>
+        <li>ClaudeCode×既存市場を席巻する手法</li>
+        <li>高単価案件取得 営業戦略</li>
+        <li>SNS発信ロードマップ（X自動化）</li>
+        <li>コンテンツ販売・収益自動化設計</li>
+        <li>Phase 2〜3（SNS×コンテンツ販売）完全攻略</li>
+        <li>LINEハーネス×ClaudeCode ファネル構築</li>
+      </ul>
+      <div class="course-goal">目標：月収 100〜300万円 完全自動化</div>
+    </div>
+  </div>
+  <p class="plan-note">※ 2コース合計 <strong>70万円相当</strong>の内容を、大幅割引でご提供します</p>
+
+  <!-- SECTION 2: 料金プラン -->
+  <div class="section-title">
+    <span class="num">02 /</span> 料金プラン（3日間限定特別価格）
+  </div>
+
+  <div class="plans">
+    <!-- ライト -->
+    <div class="plan-card">
+      <div class="plan-header">
+        <div class="plan-name">ライトプラン</div>
+        <div class="plan-price-old">通常 240,000円</div>
+        <div class="plan-price-new">190,000円<span>（税込）</span></div>
+      </div>
+      <div class="plan-body">
+        <ul>
+          <li>AIエージェント開発フリーランスコース</li>
+          <li>動画教材見放題</li>
+          <li>チャット質問し放題</li>
+          <li>グループコンサル参加し放題</li>
+          <li>個別相談 2回</li>
+          <li>9大特典（#1〜#9）</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- スタンダード -->
+    <div class="plan-card recommended">
+      <div class="plan-header">
+        <div class="plan-rec">★ RECOMMENDED</div>
+        <div class="plan-name">スタンダードプラン</div>
+        <div class="plan-price-old">通常 460,000円</div>
+        <div class="plan-price-new">360,000円<span>（税込）</span></div>
+      </div>
+      <div class="plan-body">
+        <ul>
+          <li>ライトプラン 全内容</li>
+          <li>ClaudeCode×案件ブーストコース <span class="plus-badge">+40万相当</span></li>
+          <li>個別進捗管理サポート 月1回（1年間）</li>
+          <li>個別授業 12回</li>
+          <li>個別相談 5回</li>
+          <li>10大特典＋LINEハーネス構築サポート <span class="plus-badge">+8万相当</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- VIP -->
+    <div class="plan-card">
+      <div class="plan-header">
+        <div class="plan-name">VIPプラン</div>
+        <div class="plan-price-old">通常 600,000円</div>
+        <div class="plan-price-new">500,000円<span>（税込）</span></div>
+      </div>
+      <div class="plan-body">
+        <ul>
+          <li>スタンダードプラン 全内容</li>
+          <li>個別サポート <strong>無期限</strong></li>
+          <li>高額案件 優先ご案内</li>
+          <li>通話サポートし放題</li>
+          <li>10大特典＋LINEハーネス構築サポート</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: 特典 -->
+  <div class="section-title">
+    <span class="num">03 /</span> 特典一覧（ライトプラン：9大特典）
+  </div>
+
+  <div class="tokuten-grid">
+    <div class="tokuten-card">
+      <div class="tokuten-num">①</div>
+      <div class="tokuten-title">Claude Code「神プロンプト」辞書</div>
+      <div class="tokuten-desc">現役エンジニアが厳選したClaudeへの最強プロンプト集。すぐ使える実践形式で提供。</div>
+    </div>
+    <div class="tokuten-card">
+      <div class="tokuten-num">②</div>
+      <div class="tokuten-title">「Replit × Claude Code」最速スタートアップ手順書</div>
+      <div class="tokuten-desc">環境構築ゼロで開発をスタート。Replitを使った最速セットアップ手順をマニュアル化。</div>
+    </div>
+    <div class="tokuten-card">
+      <div class="tokuten-num">③</div>
+      <div class="tokuten-title">「v0 / Bolt.new」爆速UI生成チートシート</div>
+      <div class="tokuten-desc">AIデザインツールを使いこなすためのプロンプト・操作手順を完全網羅。</div>
+    </div>
+    <div class="tokuten-card">
+      <div class="tokuten-num">④</div>
+      <div class="tokuten-title">「LINE API × Claude Code」ファネル構築マニュアル</div>
+      <div class="tokuten-desc">LINE公式アカウントとClaudeを組み合わせた自動集客ファネルの構築手順書。</div>
+    </div>
+    <div class="tokuten-card">
+      <div class="tokuten-num">⑤</div>
+      <div class="tokuten-title">「Remotion × Claude Code」動画生成＆インスタ運用ガイド</div>
+      <div class="tokuten-desc">コードで動画を自動生成し、Instagram運用を自動化するガイドブック。</div>
+    </div>
+    <div class="tokuten-card">
+      <div class="tokuten-num">⑥</div>
+      <div class="tokuten-title">「AIエージェント（カスタムスキル）」構築ガイド</div>
+      <div class="tokuten-desc">自分だけのAIエージェントを設計・構築するための実践的な構築ガイド。</div>
+    </div>
+    <div class="tokuten-card">
+      <div class="tokuten-num">⑦</div>
+      <div class="tokuten-title">「有料コンテンツ販売用」秘伝のGitHubリポジトリ式</div>
+      <div class="tokuten-desc">GitHubを使ったコンテンツ販売の仕組みを丸ごと提供。すぐ収益化できる型。</div>
+    </div>
+    <div class="tokuten-card">
+      <div class="tokuten-num">⑧</div>
+      <div class="tokuten-title">「n8n」複数AI・ツール連携ビジネス自動化テンプレート</div>
+      <div class="tokuten-desc">n8nで構築したAI連携ワークフローのテンプレートをそのまま使えるセットで提供。</div>
+    </div>
+    <div class="tokuten-card">
+      <div class="tokuten-num">⑨</div>
+      <div class="tokuten-title">現役フリーランス直伝！高単価「優良エージェント」厳選リスト＆面接攻略法</div>
+      <div class="tokuten-desc">稼げるエージェント厳選リストと、面接で単価を勝ち取るための実践的な攻略法。</div>
+    </div>
+  </div>
+
+  <!-- スタンダード以上ボーナス -->
+  <div class="tokuten-bonus">
+    <div class="tokuten-bonus-label">STANDARD &amp; VIP EXCLUSIVE — スタンダード・VIP限定ボーナス特典</div>
+    <div class="tokuten-bonus-items">
+      <div class="tokuten-bonus-item">
+        <div class="bi-num">⑩ BONUS COURSE</div>
+        <div class="bi-title">SNSに頼らないコンテンツ販売コンプリート</div>
+        <div class="bi-value">単体価値 30万円相当</div>
+      </div>
+      <div class="tokuten-bonus-item">
+        <div class="bi-num">⑪ BONUS SUPPORT</div>
+        <div class="bi-title">LINEハーネス×ClaudeCode ファネル構築サポート</div>
+        <div class="bi-value">単体価値 8万円相当</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- フッター -->
+  <div class="footer">
+    <div class="footer-logo">AI  ◆  SELA</div>
+    <div class="footer-note">本資料の内容は個別面談専用です。価格は3日間限定特別価格。</div>
+  </div>
+
+</div>
+</body>
+</html>

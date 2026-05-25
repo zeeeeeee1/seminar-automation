@@ -59,29 +59,32 @@ async function addCtaSlide(pres, context = {}) {
   s.pres = pres;
   s.background = { color: BRAND.cream };
 
-  tag(s, "REALITY CHECK");
-  s.addText("• では、明日から稼げるか？", {
-    x: 2.55, y: 0.22, w: 5, h: 0.28,
+  const ctaTag    = CTA.tag     || "REALITY CHECK";
+  const ctaTagSub = CTA.tag_sub || "• では、明日から稼げるか？";
+  const ctaTitleB = CTA.title_black || "答えは、";
+  const ctaTitleG = CTA.title_gold  || "いいえ。";
+  const ctaSub    = CTA.subtitle    || "知識を入れただけでは、単価は上がらない。\n実務で使いこなせるようになるには、次の3つが必要です。";
+
+  tag(s, ctaTag);
+  s.addText(ctaTagSub, {
+    x: ctaTag.length * 0.115 + 0.45 + 0.4, y: 0.22, w: 9.1 - ctaTag.length * 0.115 - 0.4, h: 0.28,
     fontSize: 9, fontFace: "Calibri", color: BRAND.textMid, valign: "middle",
   });
 
   // Main title
-  s.addText("答えは、", {
+  s.addText(ctaTitleB, {
     x: 0.45, y: 0.6, w: 9.1, h: 0.78,
     fontSize: 40, fontFace: "Trebuchet MS", bold: true, color: BRAND.black,
   });
-  s.addText("いいえ。", {
+  s.addText(ctaTitleG, {
     x: 2.35, y: 0.6, w: 7.2, h: 0.78,
     fontSize: 40, fontFace: "Trebuchet MS", bold: true, color: BRAND.gold,
   });
 
-  s.addText(
-    "知識を入れただけでは、単価は上がらない。\n実務で使いこなせるようになるには、次の3つが必要です。",
-    {
-      x: 0.45, y: 1.38, w: 9.1, h: 0.55,
-      fontSize: 12, fontFace: "Calibri", color: BRAND.textMid,
-    }
-  );
+  s.addText(ctaSub, {
+    x: 0.45, y: 1.38, w: 9.1, h: 0.55,
+    fontSize: 12, fontFace: "Calibri", color: BRAND.textMid,
+  });
 
   // 3 reason cards
   // カードはconfig優先、なければデフォルト
@@ -119,7 +122,7 @@ async function addCtaSlide(pres, context = {}) {
 
   // Footer logo
   s.addText("AI  ◆  SELA", { x: 0.45, y: 5.3, w: 2.0, h: 0.22, fontSize: 9, fontFace: "Calibri", bold: true, color: BRAND.textMid, charSpacing: 1 });
-  s.addText("REALITY CHECK", { x: 7.5, y: 5.3, w: 2.05, h: 0.22, fontSize: 9, fontFace: "Calibri", bold: true, color: BRAND.textMid, charSpacing: 2, align: "right" });
+  s.addText(ctaTag, { x: 7.5, y: 5.3, w: 2.05, h: 0.22, fontSize: 9, fontFace: "Calibri", bold: true, color: BRAND.textMid, charSpacing: 2, align: "right" });
 }
 
 // ─────────────────────────────────────────────
@@ -140,28 +143,35 @@ async function addQrSlide(pres) {
   s.pres = pres;
   s.background = { color: BRAND.cream };
 
-  tag(s, "NEXT ACTION");
-  s.addText("• 特典受け取り  &  個別面談予約", {
-    x: 1.7, y: 0.22, w: 5, h: 0.28,
+  const qrsTag    = QRS.tag        || "NEXT ACTION";
+  const qrsTagSub = QRS.tag_sub    || "• 特典受け取り  &  個別面談予約";
+  const qrsTitleB = QRS.title_black || "技術を装着する";
+  const qrsTitleG = QRS.title_gold  || "時代へ。";
+  const qrsTitleS = QRS.title_sub   || "自由はすぐそこにある。";
+  const qrsQuote  = QRS.quote       || "\" 技術を『着く』時代は終わり、技術を『装着（ハーネス）』する時代です。\n    まずは今日、一歩を踏み出しましょう。 \"";
+
+  tag(s, qrsTag);
+  s.addText(qrsTagSub, {
+    x: qrsTag.length * 0.115 + 0.45 + 0.4, y: 0.22, w: 5, h: 0.28,
     fontSize: 9, fontFace: "Calibri", color: BRAND.textMid, valign: "middle",
   });
 
   // Left: headline
-  s.addText("技術を装着する", {
+  s.addText(qrsTitleB, {
     x: 0.45, y: 0.62, w: 5.8, h: 0.72,
     fontSize: 36, fontFace: "Trebuchet MS", bold: true, color: BRAND.black,
   });
-  s.addText("時代へ。", {
+  s.addText(qrsTitleG, {
     x: 0.45, y: 1.3, w: 5.8, h: 0.65,
     fontSize: 36, fontFace: "Trebuchet MS", bold: true, color: BRAND.gold,
   });
-  s.addText("自由はすぐそこにある。", {
+  s.addText(qrsTitleS, {
     x: 0.45, y: 1.92, w: 5.8, h: 0.58,
     fontSize: 22, fontFace: "Trebuchet MS", bold: true, color: BRAND.black,
   });
 
   // Bullet list
-  const bullets = [
+  const bullets = QRS.bullets && QRS.bullets.length ? QRS.bullets : [
     "特典4点セット（要点まとめ / ロードマップ / エージェント3選 / 案件3選）全員配布",
     "個別サポート面談（200〜300万ロードマップ ほか 3特典）",
     "限定オープンチャット（Claude Code / MCP 最新共有）",
@@ -178,13 +188,10 @@ async function addQrSlide(pres) {
   s.addShape(pres.shapes.RECTANGLE, { x: 0.45, y: 4.35, w: 5.2, h: 0.02, fill: { color: BRAND.border }, line: { color: BRAND.border, width: 0 } });
 
   // Quote
-  s.addText(
-    "\" 技術を『着く』時代は終わり、技術を『装着（ハーネス）』する時代です。\n    まずは今日、一歩を踏み出しましょう。 \"",
-    {
-      x: 0.45, y: 4.44, w: 5.2, h: 0.72,
-      fontSize: 10, fontFace: "Calibri", italic: true, color: BRAND.textMid,
-    }
-  );
+  s.addText(qrsQuote, {
+    x: 0.45, y: 4.44, w: 5.2, h: 0.72,
+    fontSize: 10, fontFace: "Calibri", italic: true, color: BRAND.textMid,
+  });
 
   // Right: dark QR card
   s.addShape(pres.shapes.RECTANGLE, {
@@ -217,8 +224,8 @@ async function addQrSlide(pres) {
   });
 
   // Footer
-  s.addText("AI  ◆  SELA", { x: 0.45, y: 5.3, w: 2.0, h: 0.22, fontSize: 9, fontFace: "Calibri", bold: true, color: BRAND.textMid, charSpacing: 1 });
-  s.addText("THANK  YOU", { x: 7.5, y: 5.3, w: 2.05, h: 0.22, fontSize: 9, fontFace: "Calibri", bold: true, color: BRAND.textMid, charSpacing: 2, align: "right" });
+  s.addText(QRS.footer_left || "AI  ◆  SELA", { x: 0.45, y: 5.3, w: 2.0, h: 0.22, fontSize: 9, fontFace: "Calibri", bold: true, color: BRAND.textMid, charSpacing: 1 });
+  s.addText(QRS.footer_right || "THANK  YOU", { x: 7.5, y: 5.3, w: 2.05, h: 0.22, fontSize: 9, fontFace: "Calibri", bold: true, color: BRAND.textMid, charSpacing: 2, align: "right" });
 }
 
 module.exports = { addCtaSlide, addQrSlide };

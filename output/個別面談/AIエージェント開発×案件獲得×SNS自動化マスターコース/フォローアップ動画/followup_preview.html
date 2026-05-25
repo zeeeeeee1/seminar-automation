@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>本当にいいんですか？ — プレビュー</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #111; font-family: "Hiragino Kaku Gothic ProN", "Meiryo", "Noto Sans JP", sans-serif; color: #F0EDE4; }
+
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: #000a; padding: 8px 20px;
+  display: flex; align-items: center; gap: 12px; font-size: 13px; }
+.nav a { color: #C9A84C; text-decoration: none; }
+
+.slides-container { padding: 60px 20px 40px; max-width: 1100px; margin: 0 auto; }
+
+.slide-wrapper { position: relative; margin-bottom: 32px; border-radius: 8px; overflow: hidden;
+  box-shadow: 0 8px 32px #0008; }
+.slide-num { position: absolute; top: 8px; right: 12px; font-size: 11px; color: #C9A84C; opacity: .7; z-index:10; }
+
+/* Base slide */
+.slide { background: #0D1B2A; width: 100%; aspect-ratio: 16/9; padding: 5% 7%; position: relative; display: flex; flex-direction: column; }
+
+/* Title slide */
+.slide-title { justify-content: center; }
+.title-inner { max-width: 80%; }
+.accent-line { width: 60px; height: 4px; background: #C9A84C; margin-bottom: 20px; }
+.slide-title h1 { font-size: clamp(18px,3.2vw,42px); color: #F0EDE4; font-weight: 700; line-height: 1.3; margin-bottom: 14px; }
+.slide-title .subtitle { font-size: clamp(10px,1.4vw,18px); color: #B0A898; margin-bottom: 20px; }
+.divider { width: 100%; height: 1px; background: #2A3D50; margin: 16px 0; }
+.tag-sub { font-size: clamp(9px,1.1vw,14px); color: #B0A898; }
+.presenter { font-size: clamp(9px,1.1vw,14px); color: #C9A84C; margin-top: 8px; letter-spacing: 2px; }
+
+/* Section slide */
+.slide-section { justify-content: center; align-items: center; text-align: center;
+  background: linear-gradient(135deg, #0D1B2A 0%, #162540 100%); }
+.sec-num { font-size: clamp(10px,1.2vw,16px); color: #C9A84C; letter-spacing: 4px; margin-bottom: 12px; }
+.slide-section h2 { font-size: clamp(16px,2.6vw,36px); color: #F0EDE4; font-weight: 700; line-height: 1.35; margin-bottom: 14px; }
+.sec-sub { font-size: clamp(9px,1.1vw,15px); color: #B0A898; }
+
+/* Content slide */
+.slide-header { border-left: 4px solid #C9A84C; padding-left: 12px; margin-bottom: 3%; }
+.slide-header h3 { font-size: clamp(13px,1.9vw,26px); color: #F0EDE4; font-weight: 700; }
+.bullets { list-style: none; flex: 1; }
+.bullet-item { font-size: clamp(9px,1.15vw,15px); color: #B0A898; padding: 4px 0 4px 16px; position: relative; line-height: 1.55; border-bottom: 1px solid #2A3D50; }
+.bullet-item::before { content: ""; position: absolute; left: 0; top: 12px; width: 6px; height: 6px; border-radius: 50%; background: #C9A84C; }
+.note { margin-top: 3%; font-size: clamp(8px,1vw,13px); color: #C9A84C; font-style: italic; }
+
+/* Stat slide */
+.stat-subtitle { font-size: clamp(8px,1vw,13px); color: #B0A898; margin-bottom: 5%; }
+.stat-row { display: flex; gap: 3%; flex: 1; }
+.stat-card { flex: 1; background: #152032; border: 1px solid #2A3D50; border-top: 3px solid #C9A84C;
+  padding: 5% 4%; display: flex; flex-direction: column; gap: 8px; border-radius: 4px; }
+.stat-value { font-size: clamp(20px,3.5vw,48px); color: #C9A84C; font-weight: 700; }
+.stat-label { font-size: clamp(9px,1.1vw,14px); color: #F0EDE4; font-weight: 600; }
+.stat-sub { font-size: clamp(8px,0.9vw,12px); color: #B0A898; line-height: 1.5; }
+
+/* Timeline slide */
+.tl-row { display: flex; gap: 2%; flex: 1; }
+.tl-step { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+.tl-num { width: 32px; height: 32px; background: #C9A84C; color: #000; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+.tl-content { background: #152032; border: 1px solid #2A3D50; padding: 12px; border-radius: 4px; flex: 1; }
+.tl-title { font-size: clamp(9px,1.1vw,15px); color: #C9A84C; font-weight: 700; margin-bottom: 8px; white-space: pre-line; }
+.tl-body { font-size: clamp(8px,0.9vw,12px); color: #B0A898; line-height: 1.5; white-space: pre-line; }
+
+/* Two column slide */
+.twocol-row { display: flex; gap: 4%; flex: 1; }
+.col-card { flex: 1; background: #152032; border: 1px solid #2A3D50; padding: 5% 4%; border-radius: 4px; }
+.col-card.col-highlight { border-color: #C9A84C; border-top: 3px solid #C9A84C; }
+.col-label { font-size: clamp(8px,1vw,13px); color: #B0A898; letter-spacing: 1px; margin-bottom: 8px; }
+.col-heading { font-size: clamp(11px,1.5vw,20px); color: #C9A84C; font-weight: 700; margin-bottom: 12px; }
+.col-bullets { list-style: none; }
+.col-bullets li { font-size: clamp(8px,1vw,13px); color: #B0A898; padding: 4px 0 4px 14px; position: relative; border-bottom: 1px solid #2A3D50; }
+.col-bullets li::before { content: ""; position: absolute; left: 0; top: 11px; width: 5px; height: 5px; background: #C9A84C; border-radius: 50%; }
+
+/* Summary slide */
+.summary-list { flex: 1; display: flex; flex-direction: column; gap: 2%; justify-content: center; }
+.summary-item { display: flex; align-items: flex-start; gap: 16px; padding: 2.5% 3%; background: #152032; border: 1px solid #2A3D50; border-radius: 4px; }
+.sum-num { color: #C9A84C; font-weight: 700; font-size: clamp(13px,1.8vw,24px); flex-shrink: 0; }
+.sum-text { font-size: clamp(8px,1vw,13px); color: #B0A898; line-height: 1.55; }
+
+/* CTA slide */
+.slide-cta { background: #F5F0E6; color: #1A1A1A; }
+.slide-cta .cta-tag { display: inline-block; background: #1A1A1A; color: #fff; font-size: clamp(7px,0.9vw,11px); letter-spacing: 3px; padding: 3px 10px; font-weight: 700; }
+.slide-cta .cta-tag-sub { font-size: clamp(8px,0.9vw,12px); color: #3A3020; margin: 4px 0 8px; }
+.cta-title { font-size: clamp(18px,3.2vw,42px); font-weight: 700; margin-bottom: 6px; }
+.cta-title-b { color: #1A1A1A; }
+.cta-title-g { color: #B8870B; margin-left: 8px; }
+.cta-sub { font-size: clamp(8px,1vw,13px); color: #3A3020; margin-bottom: 3%; }
+.cta-cards { display: flex; gap: 2%; flex: 1; }
+.cta-card { flex: 1; background: #EDE8DC; border: 1px solid #C8B98A; border-top: 3px solid #B8870B; padding: 4% 3%; border-radius: 4px; }
+.cta-card-num { font-size: clamp(7px,0.85vw,11px); color: #B8870B; font-weight: 700; letter-spacing: 2px; margin-bottom: 6px; }
+.cta-card-title { font-size: clamp(10px,1.3vw,17px); color: #1A1A1A; font-weight: 700; margin-bottom: 8px; }
+.cta-card-body { font-size: clamp(7px,0.85vw,11px); color: #3A3020; line-height: 1.55; }
+.cta-bar { background: #1A1A1A; padding: 2% 3%; display: flex; align-items: center; gap: 12px; margin-top: 3%; border-radius: 2px; flex-shrink: 0; }
+.cta-arrow { color: #B8870B; font-size: clamp(14px,1.8vw,22px); font-weight: 700; }
+.cta-main { color: #fff; font-size: clamp(10px,1.3vw,17px); font-weight: 700; }
+.cta-bar-sub { color: #aaa; font-size: clamp(8px,0.85vw,11px); }
+
+/* QR slide */
+.slide-qr { background: #F5F0E6; color: #1A1A1A; flex-direction: row; padding: 5% 5%; gap: 5%; }
+.qr-left { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+.slide-qr .cta-tag { display: inline-block; background: #1A1A1A; color: #fff; font-size: clamp(7px,0.9vw,11px); letter-spacing: 3px; padding: 3px 10px; font-weight: 700; }
+.slide-qr .cta-tag-sub { font-size: clamp(8px,0.9vw,12px); color: #3A3020; }
+.qr-title { font-size: clamp(16px,2.8vw,38px); font-weight: 700; line-height: 1.2; margin: 6px 0; }
+.qr-title-sub { font-size: clamp(11px,1.5vw,20px); font-weight: 700; color: #1A1A1A; }
+.qr-bullets { list-style: none; margin-top: 6px; flex: 1; }
+.qr-bullets li { font-size: clamp(8px,0.95vw,13px); color: #3A3020; padding: 4px 0 4px 14px; position: relative; border-bottom: 1px solid #C8B98A; }
+.qr-bullets li::before { content: ""; position: absolute; left: 0; top: 11px; width: 5px; height: 5px; background: #B8870B; border-radius: 50%; }
+.qr-quote { font-size: clamp(7px,0.85vw,11px); color: #6A5A40; font-style: italic; margin-top: 8px; line-height: 1.5; white-space: pre-line; }
+.qr-right { width: 30%; display: flex; align-items: center; }
+.qr-card { background: #1A1A1A; border: 2px solid #B8870B; padding: 5%; width: 100%; border-radius: 6px; text-align: center; }
+.qr-scan { color: #B8870B; font-size: clamp(7px,0.85vw,11px); letter-spacing: 3px; font-weight: 700; margin-bottom: 8px; }
+.qr-card-title1, .qr-card-title2 { color: #fff; font-size: clamp(9px,1.1vw,15px); font-weight: 700; line-height: 1.4; }
+.qr-box { margin-top: 10px; background: #fff; color: #1A1A1A; padding: 10px; font-size: clamp(14px,2vw,28px); font-weight: 700; border-radius: 4px; line-height: 1.4; }
+.qr-box span { display: block; font-size: clamp(8px,0.9vw,12px); font-weight: 400; color: #888; margin-top: 4px; }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <span style="color:#C9A84C;font-weight:700;">本当にいいんですか？</span>
+  <span style="color:#666;margin-left:auto">全10スライド — HTMLプレビュー</span>
+</nav>
+<div class="slides-container">
+
+  <div class="slide-wrapper" id="s1">
+    <div class="slide-num">1 / 10</div>
+    
+    <div class="slide slide-title">
+      <div class="title-inner">
+        <div class="accent-line"></div>
+        <h1>本当にいいんですか？</h1>
+        <p class="subtitle">個別面談後フォローアップ | 3日間限定割引 本日最終日</p>
+        <div class="divider"></div>
+        <p class="tag-sub">フォローアップ動画 | 3日間限定割引 本日最終日</p>
+        <p class="presenter">AIセラ</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-wrapper" id="s2">
+    <div class="slide-num">2 / 10</div>
+    
+    <div class="slide slide-section">
+      <div class="sec-num">SECTION  01</div>
+      <h2>「本当にいいんですか？」</h2>
+      <p class="sec-sub">このコース1つで学べること、正直に全部お見せします</p>
+    </div>
+  </div>
+
+  <div class="slide-wrapper" id="s3">
+    <div class="slide-num">3 / 10</div>
+    
+    <div class="slide slide-twocol">
+      <div class="slide-header"><h3>他で全部バラバラに学んだら、いくらかかる？</h3></div>
+      <div class="twocol-row">
+        
+      <div class="col-card ">
+        <div class="col-label">他スクールでバラバラに学ぶ場合</div>
+        <div class="col-heading">合計 300万円超も珍しくない</div>
+        <ul class="col-bullets"><li>広告運用スクール：30〜80万円</li><li>LINE運用講座：10〜30万円</li><li>ライティング講座：10〜30万円</li><li>動画編集スクール：30〜60万円</li><li>プログラミングスクール：60〜100万円</li><li>コンテンツ販売コンサル：50〜100万円</li><li>SNS・TikTok運用講座：20〜50万円</li></ul>
+      </div>
+        
+      <div class="col-card col-highlight">
+        <div class="col-label">★ このコース1つで全部学べる</div>
+        <div class="col-heading">しかも一生サポート付き</div>
+        <ul class="col-bullets"><li>広告運用</li><li>LINE運用</li><li>ライティング</li><li>動画編集</li><li>プログラミング</li><li>コンテンツ販売</li><li>SNS・TikTok運用</li></ul>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-wrapper" id="s4">
+    <div class="slide-num">4 / 10</div>
+    
+    <div class="slide slide-stat">
+      <div class="slide-header"><h3>アフィリエイトシステム参画者の実績</h3></div>
+      <p class="stat-subtitle">年齢も、経験も、関係ありません。再現性のある仕組みがあるから、誰でも結果が出せます。</p>
+      <div class="stat-row">
+    <div class="stat-card">
+      <div class="stat-value">月収50万+</div>
+      <div class="stat-label">80代・PC未経験のおばあちゃんが達成</div>
+      <div class="stat-sub">完全未経験からアフィリエイトシステムで実現</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">初月20万</div>
+      <div class="stat-label">初心者が参画初月で達成</div>
+      <div class="stat-sub">仕組みに乗るだけで最短で収益化</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">月収300万</div>
+      <div class="stat-label">参画1年で達成した受講生が続出</div>
+      <div class="stat-sub">スキルが積み上がるほど収入が加速する</div>
+    </div></div>
+    </div>
+  </div>
+
+  <div class="slide-wrapper" id="s5">
+    <div class="slide-num">5 / 10</div>
+    
+    <div class="slide slide-content">
+      <div class="slide-header"><h3>ここでしか手に入らない、2つの特別な仕組み</h3></div>
+      <ul class="bullets"><li class="bullet-item">🎯  高単価アフィリエイトシステムへの参画権</li><li class="bullet-item">　　→ 80代でも月収50万を実現した、再現性の高いアフィリエイトの仕組みに参加できる</li><li class="bullet-item">📱  TikTok運用代行プログラム（フランチャイズ料：通常数十万円 → 受講生は0円）</li><li class="bullet-item">　　→ TikTokの運用スキルを学びながら、運用代行として稼ぐ仕組みを構築できる</li><li class="bullet-item">　　→ 通常はフランチャイズ加盟料が発生するプログラムを、受講生には完全無料で提供</li><li class="bullet-item">💬  一生サポート（VIPプラン）</li><li class="bullet-item">　　→ 卒業後も関係は続く。いつでも質問・相談できる環境が永続的に続く</li></ul>
+      <div class="note">この3つの組み合わせは、他のどのスクールにも存在しません</div>
+    </div>
+  </div>
+
+  <div class="slide-wrapper" id="s6">
+    <div class="slide-num">6 / 10</div>
+    
+    <div class="slide slide-twocol">
+      <div class="slide-header"><h3>今日が最後のチャンスです</h3></div>
+      <div class="twocol-row">
+        
+      <div class="col-card ">
+        <div class="col-label">通常価格（明日から）</div>
+        <div class="col-heading">46万円</div>
+        <ul class="col-bullets"><li>スタンダードプラン定価</li><li>サポート・特典の内容は同じ</li><li>いつでも申し込める価格</li><li>ただし10万円余分に払うことになる</li></ul>
+      </div>
+        
+      <div class="col-card col-highlight">
+        <div class="col-label">★ 3日間限定 本日23:59まで</div>
+        <div class="col-heading">36万円（-10万円）</div>
+        <ul class="col-bullets"><li>本日23:59で終了の特別価格</li><li>明日から46万円に戻ります</li><li>10万円割引は今日だけ</li><li>同じ内容を今日だけ10万円安く始められる</li></ul>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-wrapper" id="s7">
+    <div class="slide-num">7 / 10</div>
+    
+    <div class="slide slide-content">
+      <div class="slide-header"><h3>迷っている方へ — 枠だけでも確保できます</h3></div>
+      <ul class="bullets"><li class="bullet-item">本日、10名の方からご返事をいただく必要があります</li><li class="bullet-item">ただ、本当に迷っていてあと一歩という方は——</li><li class="bullet-item">✉️  『迷っている』『検討中』という旨だけでも連絡いただければ、枠を確保します</li><li class="bullet-item">✅  決断は後でも構いません。ただ、枠と価格だけは今日押さえてください</li><li class="bullet-item">✅  連絡いただいた方には、個別に不安・疑問にお答えします</li><li class="bullet-item">❌  今日連絡しないと、明日には同じ内容に10万円多く払うことになります</li></ul>
+      <div class="note">「迷っている」という一言だけでOKです。まずは連絡してください</div>
+    </div>
+  </div>
+
+  <div class="slide-wrapper" id="s8">
+    <div class="slide-num">8 / 10</div>
+    
+    <div class="slide slide-summary">
+      <div class="slide-header"><h3>最後にもう一度だけ</h3></div>
+      <div class="summary-list">
+    <div class="summary-item">
+      <span class="sum-num">01</span>
+      <span class="sum-text">7つのスキルを一括習得 — 別々に学べば300万円超。ここなら全部まとめて、一生サポート付きで学べる</span>
+    </div>
+    <div class="summary-item">
+      <span class="sum-num">02</span>
+      <span class="sum-text">アフィリエイト参画 ＋ TikTok運用代行0円 — 入会するだけで収益の仕組みが2つ手に入る</span>
+    </div>
+    <div class="summary-item">
+      <span class="sum-num">03</span>
+      <span class="sum-text">本日限定 -10万円 — 明日から46万円。今日が唯一の36万円で始められる日</span>
+    </div>
+    <div class="summary-item">
+      <span class="sum-num">04</span>
+      <span class="sum-text">迷っているなら今すぐ連絡を — 枠確保だけでOK。「迷っている」の一言で大丈夫</span>
+    </div></div>
+    </div>
+  </div>
+
+  <div class="slide-wrapper" id="s9">
+    <div class="slide-num">9 / 10</div>
+    
+    <div class="slide slide-cta">
+      <div class="cta-tag">CONTEXT ENGINEERING</div>
+      <div class="cta-tag-sub">• コンテキストエンジニアリングの時代が来た</div>
+      <div class="cta-title">
+        <span class="cta-title-b">今がチャンス、</span>
+        <span class="cta-title-g">動くなら今。</span>
+      </div>
+      <div class="cta-sub">エンジニアリングスキルは今、最も価値のある武器です。<br>コンテキストエンジニアリングを武器に、理想の働き方を手に入れてください。</div>
+      <div class="cta-cards">
+    <div class="cta-card">
+      <div class="cta-card-num">01 / ENGINEER VALUE</div>
+      <div class="cta-card-title">エンジニアの可能性</div>
+      <div class="cta-card-body">2030年までにIT人材は79万人不足。AIエンジニアの時給は8,000〜20,000円。<br>景気・業種に左右されない最強のスキルです。</div>
+    </div>
+    <div class="cta-card">
+      <div class="cta-card-num">02 / CONTEXT ENGINEERING</div>
+      <div class="cta-card-title">コンテキストエンジニアリング</div>
+      <div class="cta-card-body">AIへの指示設計力が今一番チャンスなスキル。<br>コードを丸暗記しなくていい。構造的思考力で稼ぐ、新しい時代のエンジニア像。</div>
+    </div>
+    <div class="cta-card">
+      <div class="cta-card-num">03 / IDEAL LIFESTYLE</div>
+      <div class="cta-card-title">理想の働き方</div>
+      <div class="cta-card-body">時給5,000円で安定しながら、コンテキストエンジニアリングを極める。<br>これがAIで稼ぐスキルを手に入れる、最高の理想ではないですか？</div>
+    </div></div>
+      <div class="cta-bar">
+        <span class="cta-arrow">→</span>
+        <span class="cta-main">そのロードマップ、一緒に設計しましょう。</span>
+        <span class="cta-bar-sub">個別相談会でロードマップを引いて、最短で動き出しましょう。</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-wrapper" id="s10">
+    <div class="slide-num">10 / 10</div>
+    
+    <div class="slide slide-qr">
+      <div class="qr-left">
+        <div class="cta-tag">NEXT ACTION</div>
+        <div class="cta-tag-sub">• 個別面談特典受取  &amp;  ロードマップ相談</div>
+        <div class="qr-title">
+          <span class="cta-title-b">コンテキストエンジニアリングで</span><br>
+          <span class="cta-title-g">稼ぐ時代へ。</span>
+        </div>
+        <div class="qr-title-sub">理想の働き方はすぐそこにある。</div>
+        <ul class="qr-bullets"><li>個別面談特典（ロードマップ / エージェント3選 / 案件3選 / Claude Codeプロンプト辞書）</li><li>ロードマップ個別相談会（月収100〜300万への最短ルートを一緒に設計）</li><li>限定オープンチャット（Claude Code / MCP 最新情報を共有）</li><li>次回セミナー優先ご招待</li></ul>
+        <div class="qr-quote">" コードを書く時代から、コンテキストを設計する時代へ。<br>    まずは今日、一歩を踏み出しましょう。 "</div>
+      </div>
+      <div class="qr-right">
+        <div class="qr-card">
+          <div class="qr-scan">SCAN TO JOIN</div>
+          <div class="qr-card-title1">個別面談特典受取 &amp;</div>
+          <div class="qr-card-title2">ロードマップ相談はこちら</div>
+          <div class="qr-box">QR<br><span>lin.ee/yhhurWq</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

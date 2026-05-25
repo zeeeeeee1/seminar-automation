@@ -27,8 +27,10 @@
   - **自動実行時はOK待ちせず、参照資料から最善の判断で進める**
 
 ### STEP 4 — スライド生成
-- `scripts/generate_seminar.js` を参考に Node.js + pptxgenjs でスライドを生成
-- 必ず `scripts/cta_qr_slides.js` をrequireしてCTA+QRスライドを末尾に追加する
+- **推奨**: `/generate-slide` コマンドを使用する（`.claude/commands/generate-slide.md` 参照）
+- スペックJSONを `specs/` に作成し `node scripts/generate_from_spec.js --spec specs/<file>.json` で生成
+- 利用可能なスライドタイプは `scripts/slide_components.js` を参照（stat・quote・timeline・two_column など9種類）
+- 必ず `scripts/cta_qr_slides.js` のCTA+QRスライドを末尾に追加する（スペックに含めなくても自動追加）
 - `config/cta_config.json` のQR URLとCTA内容を使用すること
 - 出力先: `output/` フォルダ（ファイル名: `YYYYMMDD_セミナータイトル.pptx`）
 
@@ -65,8 +67,27 @@ seminar-project/
 │   └── generate_seminar.js ← スライド生成サンプルスクリプト
 ├── reference/              ← 参照資料置き場（自由に追加OK）
 │   └── README.md
-└── output/                 ← 生成されたPPTXの出力先
+└── output/                 ← 生成ファイルの出力先（用途別ディレクトリ構成）
+    ├── セミナー/               ← セミナー用スライド
+    │   └── YYYYMMDD_タイトル.pptx
+    └── 個別面談/               ← 個別面談用スライド
+        └── コース名/
+            ├── スライド.pptx
+            ├── preview.html
+            ├── slide_screenshots/
+            └── まとめ/         ← コース説明・特典まとめPDF
+                ├── course_summary.html
+                └── course_summary.pdf
 ```
+
+### output ディレクトリルール（必ず守ること）
+
+| 用途 | 保存先 |
+|------|--------|
+| セミナースライド | `output/セミナー/YYYYMMDD_タイトル.pptx` |
+| 個別面談スライド | `output/個別面談/コース名/` |
+| 個別面談まとめPDF | `output/個別面談/コース名/まとめ/` |
+| 台本・原稿 | `output/個別面談/コース名/台本/` or `output/セミナー/台本/` |
 
 ---
 

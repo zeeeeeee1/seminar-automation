@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>後押しLINEメッセージ</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+  background: #f5f5f5;
+  color: #1A1A1A;
+  font-size: 14px;
+  line-height: 1.8;
+  padding: 40px 20px;
+}
+.container { max-width: 700px; margin: 0 auto; }
+.doc-header {
+  border-bottom: 3px solid #1A1A1A;
+  padding-bottom: 14px;
+  margin-bottom: 32px;
+}
+.doc-header h1 { font-size: 20px; font-weight: 900; margin-bottom: 4px; }
+.doc-header .meta { font-size: 11px; color: #888; }
+
+.sequence-label {
+  text-align: center;
+  font-size: 11px;
+  color: #aaa;
+  letter-spacing: 3px;
+  margin-bottom: 24px;
+  font-weight: 700;
+}
+.arrow-down {
+  text-align: center;
+  font-size: 20px;
+  color: #C9A84C;
+  margin: 8px 0 16px;
+}
+
+.msg-block {
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+.msg-header {
+  background: #1A1A1A;
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.msg-header .num {
+  color: #C9A84C;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+.msg-header .title { font-size: 13px; font-weight: 700; }
+.msg-header .charcount { font-size: 11px; color: #aaa; }
+.msg-body { padding: 20px 24px; }
+.msg-text {
+  background: #f9f9f9;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  padding: 18px 20px;
+  font-size: 14px;
+  line-height: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.char-bar {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  color: #888;
+}
+.bar-bg {
+  flex: 1;
+  height: 6px;
+  background: #eee;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  background: #4CAF50;
+  border-radius: 3px;
+}
+
+.rich-menu { margin-top: 16px; }
+.rich-menu .rm-label {
+  font-size: 11px;
+  color: #888;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+.rm-buttons { display: flex; gap: 8px; }
+.rm-btn {
+  flex: 1;
+  border: 2px solid #1A1A1A;
+  border-radius: 6px;
+  padding: 10px 8px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+.rm-btn.positive { border-color: #C9A84C; color: #C9A84C; }
+.rm-btn.neutral { border-color: #666; color: #666; }
+.rm-btn.negative { border-color: #aaa; color: #aaa; }
+
+.section-divider { border-top: 2px dashed #ddd; margin: 32px 0 24px; }
+
+.footer {
+  margin-top: 32px;
+  border-top: 1px solid #ddd;
+  padding-top: 12px;
+  font-size: 10px;
+  color: #aaa;
+  display: flex;
+  justify-content: space-between;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="doc-header">
+  <h1>後押しLINEメッセージ — 個別面談フォロー</h1>
+  <div class="meta">用途：個別面談後フォローアップ（LINE公式配信）　／　送るタイミング：夜に3通連続　／　文字数制限：500文字／通</div>
+</div>
+
+<div class="sequence-label">▼ 夜に連続で送る 3通セット ▼</div>
+
+<!-- MESSAGE 1 -->
+<div class="msg-block">
+  <div class="msg-header">
+    <span class="num">1通目</span>
+    <span class="title">フック — 本当にいいんですか？</span>
+    <span class="charcount" id="h1"></span>
+  </div>
+  <div class="msg-body">
+    <div class="msg-text" id="msg1">本当にいいんですか？
+
+このコース1つで学べること、正直ありえないです。
+
+・プログラミング（Claude Code × AI開発）
+・広告運用
+・LINE運用
+・クライアントワーク・案件獲得
+・AIコンサルになるためのステップ
+・AI副業の始め方
+・SNS運用・TikTok
+
+さらに高単価アフィリエイト参画権 ＋ TikTok運用代行（通常フランチャイズ料：数十万円 → 受講生は0円）まで全部入っています。
+
+こんな教材、他では見たことがありません。
+
+今後、自力でバラバラに学ぶか——
+迷っている方は、ここに一言だけ送ってください。</div>
+    <div class="char-bar">
+      <span id="count1"></span>文字 / 500文字
+      <div class="bar-bg"><div class="bar-fill" id="bar1"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="arrow-down">↓</div>
+
+<!-- MESSAGE 2 -->
+<div class="msg-block">
+  <div class="msg-header">
+    <span class="num">2通目</span>
+    <span class="title">実績 — 年齢も経験も関係ない</span>
+    <span class="charcount" id="h2"></span>
+  </div>
+  <div class="msg-body">
+    <div class="msg-text" id="msg2">このアフィリエイトシステム——
+
+80代・PC未経験のおばあちゃんが、月収50万円以上を実現しています。
+
+さらに、前澤社長クラスの方から直接動画編集の依頼を受けているようなトッププレイヤーの直下で動ける環境です。
+
+即金性と再現性、どちらも持っているのがこのプロジェクトです。
+
+年齢も、経験も、関係ありません。
+仕組みがあるから結果が出るんです。</div>
+    <div class="char-bar">
+      <span id="count2"></span>文字 / 500文字
+      <div class="bar-bg"><div class="bar-fill" id="bar2"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="arrow-down">↓</div>
+
+<!-- MESSAGE 3 -->
+<div class="msg-block">
+  <div class="msg-header">
+    <span class="num">3通目</span>
+    <span class="title">価格・締め切り ＋ CTA（リッチメニュー）</span>
+    <span class="charcount" id="h3"></span>
+  </div>
+  <div class="msg-body">
+    <div class="msg-text" id="msg3">そして——本日23:59が最終です。
+
+▶ 今日36万円 → 明日から46万円
+
+サポート内容は一切変わりません。
+ただ、10万円多く払うことになるだけです。
+
+「迷っている」という一言だけでOK。
+枠と今日の価格を確保します。
+
+↓ 今のお気持ちを教えてください</div>
+    <div class="char-bar">
+      <span id="count3"></span>文字 / 500文字
+      <div class="bar-bg"><div class="bar-fill" id="bar3"></div></div>
+    </div>
+    <div class="rich-menu">
+      <div class="rm-label">リッチメニュー（ボタン表示）</div>
+      <div class="rm-buttons">
+        <div class="rm-btn positive">✅ 決めました！</div>
+        <div class="rm-btn neutral">🤔 まだ迷っています</div>
+        <div class="rm-btn negative">今回は見送ります</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DIVIDER -->
+<div class="section-divider"></div>
+
+<!-- INDIVIDUAL REPLY -->
+<div class="msg-block">
+  <div class="msg-header">
+    <span class="num">個別返信</span>
+    <span class="title">「延長してほしい」という方への個別対応</span>
+    <span class="charcount" id="h4"></span>
+  </div>
+  <div class="msg-body">
+    <div class="msg-text" id="msg4">ご連絡ありがとうございます！
+
+もちろん大丈夫です。
+枠と今日の価格、しっかり確保しておきますね。
+
+いつでも準備できたら教えてください。
+一緒に進めていきましょう！</div>
+    <div class="char-bar">
+      <span id="count4"></span>文字 / 500文字
+      <div class="bar-bg"><div class="bar-fill" id="bar4"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <span>AI ◆ SELA — 個別面談後押しLINEメッセージ</span>
+  <span>LINE公式アカウント配信用 / 500文字制限準拠</span>
+</div>
+
+</div>
+
+<script>
+function setup(id, barId, countId, headerId) {
+  const text = document.getElementById(id).textContent.trim();
+  const len = text.length;
+  document.getElementById(countId).textContent = len;
+  document.getElementById(headerId).textContent = len + "文字";
+  const pct = Math.min(len / 500 * 100, 100);
+  document.getElementById(barId).style.width = pct + "%";
+}
+setup("msg1","bar1","count1","h1");
+setup("msg2","bar2","count2","h2");
+setup("msg3","bar3","count3","h3");
+setup("msg4","bar4","count4","h4");
+</script>
+</body>
+</html>
